@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.zuo"/>
+    <bean id="customerService" class="com.zuo.initspringbean.CustomerService">
+        <property name="message" value="I'm property message"/>
+    </bean>
+
+    <bean id="customer1" class="com.zuo.initspringbean.Customer1" init-method="init" destroy-method="destory">
+        <property name="message" value="I'm property message"/>
+    </bean>
+
+    <bean id="customer3" class="com.zuo.spingaop.Customer3">
+        <property name="name" value="Gongyu"/>
+        <property name="url" value="https://www.baidu.com"/>
+    </bean>
+
+    <bean id="hijackBeforeMethodBean" class="com.zuo.spingaop.HijackBeforeMethod"/>
+    <bean id="customerService3Proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="customer3"/>
+        <property name="interceptorNames">
+            <list>
+                <value>hijackBeforeMethodBean</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!--    <bean id="'item" class="com.zuo.springel.Item">-->
+    <!--        <property name="name" value="Zuo"></property>-->
+    <!--        <property name="qty" value="10"></property>-->
+    <!--    </bean>-->
+
+    <!--    <bean id="customer2Bean" class="com.zuo.springel.Customer2">-->
+    <!--        <property name="item" value="#{'item}" />-->
+    <!--        <property name="itemName" value="#{'item.name}" />-->
+    <!--    </bean>-->
+
+</beans>
