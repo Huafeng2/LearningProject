@@ -1,6 +1,6 @@
 package com.zuo.spingaop;
 
-public class Customer3 {
+public class customerAOP {
     private String name;
     private String url;
 
