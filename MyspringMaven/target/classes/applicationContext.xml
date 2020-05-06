@@ -13,20 +13,33 @@
         <property name="message" value="I'm property message"/>
     </bean>
 
-    <bean id="customer3" class="com.zuo.spingaop.Customer3">
+    <bean id="customerAOP" class="com.zuo.spingaop.customerAOP">
         <property name="name" value="Gongyu"/>
         <property name="url" value="https://www.baidu.com"/>
     </bean>
 
     <bean id="hijackBeforeMethodBean" class="com.zuo.spingaop.HijackBeforeMethod"/>
-    <bean id="customerService3Proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <property name="target" ref="customer3"/>
+    <bean id="HijackAroundMethodBean" class="com.zuo.spingaop.HijackAroundMethod"/>
+
+    <!--名称匹配的例子-->
+    <bean id="customerAOPcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedName" value="printName"/>
+    </bean>
+    <bean id="customerAOPCutAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="customerAOPcut"/>
+        <property name="advice" ref="HijackAroundMethodBean"/>
+    </bean>
+
+    <bean id="customerAOPProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="customerAOP"/>
         <property name="interceptorNames">
             <list>
-                <value>hijackBeforeMethodBean</value>
+                <value>customerAOPCutAdvisor</value>
             </list>
         </property>
     </bean>
+
+
 
 
     <!--    <bean id="'item" class="com.zuo.springel.Item">-->

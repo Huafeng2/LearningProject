@@ -1,16 +1,9 @@
 package com.zuo;
 
-import com.zuo.initspringbean.Customer1;
 import com.zuo.initspringbean.CustomerService;
-import com.zuo.spingaop.Customer3;
-import com.zuo.springel.Customer2;
-import com.zuo.springel.Item;
+import com.zuo.spingaop.customerAOP;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.expression.Expression;
-import org.springframework.expression.ExpressionParser;
-import org.springframework.expression.spel.standard.SpelExpressionParser;
-import org.springframework.expression.spel.support.StandardEvaluationContext;
 
 public class Main {
 
@@ -36,8 +29,8 @@ public class Main {
 //        Expression exp1 = parser.parseExpression("name");
 //        String msg1 = exp.getValue(itemContext, String.class);
 
-        Customer3 custP= (Customer3) context.getBean("customer3");
-        Customer3 cust = (Customer3) context.getBean("customerService3Proxy");
+//        customerAOP custP = (customerAOP) context.getBean("customerAOP");
+        customerAOP cust = (customerAOP) context.getBean("customerAOPProxy");
         System.out.println("*************************");
         cust.printName();
         System.out.println("*************************");
@@ -46,8 +39,7 @@ public class Main {
         try {
             cust.printThrowException();
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
-
     }
 }
