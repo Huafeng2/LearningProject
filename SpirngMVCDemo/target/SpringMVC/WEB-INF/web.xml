@@ -13,10 +13,20 @@
         </servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>com.zuo.springmvc.servelet.CountAccessTimesServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>HelloWeb</servlet-name>
         <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/countAccessTimes</url-pattern>
     </servlet-mapping>
 
 </web-app>

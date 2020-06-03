@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mrkj.ygl.dao.forum.forumMainMapper" >
+  <resultMap id="BaseResultMap" type="com.mrkj.ygl.entity.forum.forumMain" >
+    <id column="main_id" property="mainId" jdbcType="VARCHAR" />
+    <result column="main_title" property="mainTitle" jdbcType="VARCHAR" />
+    <result column="main_flag" property="mainFlag" jdbcType="VARCHAR" />
+    <result column="main_type" property="mainType" jdbcType="VARCHAR" />
+    <result column="main_creatime" property="mainCreatime" jdbcType="TIMESTAMP" />
+    <result column="main_creatuser" property="mainCreatuser" jdbcType="VARCHAR" />
+    <result column="main_recommend" property="mainRecommend" jdbcType="INTEGER" />
+    <result column="main_delete" property="mainDelete" jdbcType="CHAR" />
+    <result column="main_nickname" property="mainNickname" jdbcType="VARCHAR" />
+    <result column="main_zan" property="mainZan" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mrkj.ygl.entity.forum.forumMain" extends="BaseResultMap" >
+    <result column="main_content" property="mainContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    main_id, main_title, main_flag, main_type, main_creatime, main_creatuser, main_recommend, 
+    main_delete, main_nickname, main_zan
+  </sql>
+  <sql id="Blob_Column_List" >
+    main_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from forum_main
+    where main_id = #{mainId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByType" resultMap="ResultMapWithBLOBs" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from forum_main
+    <where> 
+    	<if test="mainType != null">
+    		main_type = #{mainType,jdbcType=VARCHAR} 
+    	</if>
+    	<if test="mainRecommend != null">
+    		and main_recommend = #{mainRecommend,jdbcType=INTEGER}
+    	</if>
+    </where> 
+    order by main_recommend,main_creatime
+    limit #{start,jdbcType=INTEGER},#{offset,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from forum_main
+    where main_id = #{mainId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.mrkj.ygl.entity.forum.forumMain" >
+    insert into forum_main (main_id, main_title, main_flag, 
+      main_type, main_creatime, main_creatuser, 
+      main_recommend, main_delete, main_nickname, 
+      main_zan, main_content)
+    values (#{mainId,jdbcType=VARCHAR}, #{mainTitle,jdbcType=VARCHAR}, #{mainFlag,jdbcType=VARCHAR}, 
+      #{mainType,jdbcType=VARCHAR}, #{mainCreatime,jdbcType=TIMESTAMP}, #{mainCreatuser,jdbcType=VARCHAR}, 
+      #{mainRecommend,jdbcType=INTEGER}, #{mainDelete,jdbcType=CHAR}, #{mainNickname,jdbcType=VARCHAR}, 
+      #{mainZan,jdbcType=INTEGER}, #{mainContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrkj.ygl.entity.forum.forumMain" >
+    insert into forum_main
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mainId != null" >
+        main_id,
+      </if>
+      <if test="mainTitle != null" >
+        main_title,
+      </if>
+      <if test="mainFlag != null" >
+        main_flag,
+      </if>
+      <if test="mainType != null" >
+        main_type,
+      </if>
+      <if test="mainCreatime != null" >
+        main_creatime,
+      </if>
+      <if test="mainCreatuser != null" >
+        main_creatuser,
+      </if>
+      <if test="mainRecommend != null" >
+        main_recommend,
+      </if>
+      <if test="mainDelete != null" >
+        main_delete,
+      </if>
+      <if test="mainNickname != null" >
+        main_nickname,
+      </if>
+      <if test="mainZan != null" >
+        main_zan,
+      </if>
+      <if test="mainContent != null" >
+        main_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mainId != null" >
+        #{mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="mainTitle != null" >
+        #{mainTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mainFlag != null" >
+        #{mainFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="mainType != null" >
+        #{mainType,jdbcType=VARCHAR},
+      </if>
+      <if test="mainCreatime != null" >
+        #{mainCreatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mainCreatuser != null" >
+        #{mainCreatuser,jdbcType=VARCHAR},
+      </if>
+      <if test="mainRecommend != null" >
+        #{mainRecommend,jdbcType=INTEGER},
+      </if>
+      <if test="mainDelete != null" >
+        #{mainDelete,jdbcType=CHAR},
+      </if>
+      <if test="mainNickname != null" >
+        #{mainNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="mainZan != null" >
+        #{mainZan,jdbcType=INTEGER},
+      </if>
+      <if test="mainContent != null" >
+        #{mainContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrkj.ygl.entity.forum.forumMain" >
+    update forum_main
+    <set >
+      <if test="mainTitle != null" >
+        main_title = #{mainTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mainFlag != null" >
+        main_flag = #{mainFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="mainType != null" >
+        main_type = #{mainType,jdbcType=VARCHAR},
+      </if>
+      <if test="mainCreatime != null" >
+        main_creatime = #{mainCreatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mainCreatuser != null" >
+        main_creatuser = #{mainCreatuser,jdbcType=VARCHAR},
+      </if>
+      <if test="mainRecommend != null" >
+        main_recommend = #{mainRecommend,jdbcType=INTEGER},
+      </if>
+      <if test="mainDelete != null" >
+        main_delete = #{mainDelete,jdbcType=CHAR},
+      </if>
+      <if test="mainNickname != null" >
+        main_nickname = #{mainNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="mainZan != null" >
+        main_zan = #{mainZan,jdbcType=INTEGER},
+      </if>
+      <if test="mainContent != null" >
+        main_content = #{mainContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where main_id = #{mainId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mrkj.ygl.entity.forum.forumMain" >
+    update forum_main
+    set main_title = #{mainTitle,jdbcType=VARCHAR},
+      main_flag = #{mainFlag,jdbcType=VARCHAR},
+      main_type = #{mainType,jdbcType=VARCHAR},
+      main_creatime = #{mainCreatime,jdbcType=TIMESTAMP},
+      main_creatuser = #{mainCreatuser,jdbcType=VARCHAR},
+      main_recommend = #{mainRecommend,jdbcType=INTEGER},
+      main_delete = #{mainDelete,jdbcType=CHAR},
+      main_nickname = #{mainNickname,jdbcType=VARCHAR},
+      main_zan = #{mainZan,jdbcType=INTEGER},
+      main_content = #{mainContent,jdbcType=LONGVARCHAR}
+    where main_id = #{mainId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrkj.ygl.entity.forum.forumMain" >
+    update forum_main
+    set main_title = #{mainTitle,jdbcType=VARCHAR},
+      main_flag = #{mainFlag,jdbcType=VARCHAR},
+      main_type = #{mainType,jdbcType=VARCHAR},
+      main_creatime = #{mainCreatime,jdbcType=TIMESTAMP},
+      main_creatuser = #{mainCreatuser,jdbcType=VARCHAR},
+      main_recommend = #{mainRecommend,jdbcType=INTEGER},
+      main_delete = #{mainDelete,jdbcType=CHAR},
+      main_nickname = #{mainNickname,jdbcType=VARCHAR},
+      main_zan = #{mainZan,jdbcType=INTEGER}
+    where main_id = #{mainId,jdbcType=VARCHAR}
+  </update>
+</mapper>

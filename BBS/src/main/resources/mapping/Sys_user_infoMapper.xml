@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mrkj.ygl.dao.role.Sys_user_infoMapper" >
+  <resultMap id="BaseResultMap" type="com.mrkj.ygl.entity.login.Sys_user_info" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="INTEGER" />
+    <result column="nianl" property="nianl" jdbcType="INTEGER" />
+    <result column="shenfzh" property="shenfzh" jdbcType="VARCHAR" />
+    <result column="zhensxm" property="zhensxm" jdbcType="VARCHAR" />
+    <result column="zhuz" property="zhuz" jdbcType="VARCHAR" />
+    <result column="tec" property="tec" jdbcType="VARCHAR" />
+    <result column="dianh" property="dianh" jdbcType="VARCHAR" />
+    <result column="xingb" property="xingb" jdbcType="INTEGER" />
+    <result column="chusrq" property="chusrq" jdbcType="DATE" />
+    <result column="zhanghzt" property="zhanghzt" jdbcType="INTEGER" />
+    <result column="youx" property="youx" jdbcType="VARCHAR" />
+    <result column="yulzd1" property="yulzd1" jdbcType="VARCHAR" />
+    <result column="yulzd2" property="yulzd2" jdbcType="VARCHAR" />
+    <result column="yulzd3" property="yulzd3" jdbcType="VARCHAR" />
+    <result column="yulzd4" property="yulzd4" jdbcType="VARCHAR" />
+    <result column="yulzd5" property="yulzd5" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="DATE" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="creat_date" property="creatDate" jdbcType="DATE" />
+    <result column="creat_user" property="creatUser" jdbcType="VARCHAR" />
+    <result column="beiz" property="beiz" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, role, nianl, shenfzh, zhensxm, zhuz, tec, dianh, xingb, chusrq, zhanghzt, 
+    youx, yulzd1, yulzd2, yulzd3, yulzd4, yulzd5, update_date, update_user, creat_date, 
+    creat_user, beiz
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_user_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.mrkj.ygl.entity.login.Sys_user_info" >
+    insert into sys_user_info (id, username, role, 
+      nianl, shenfzh, zhensxm, 
+      zhuz, tec, dianh, xingb, 
+      chusrq, zhanghzt, youx, 
+      yulzd1, yulzd2, yulzd3, 
+      yulzd4, yulzd5, update_date, 
+      update_user, creat_date, creat_user, 
+      beiz)
+    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, 
+      #{nianl,jdbcType=INTEGER}, #{shenfzh,jdbcType=VARCHAR}, #{zhensxm,jdbcType=VARCHAR}, 
+      #{zhuz,jdbcType=VARCHAR}, #{tec,jdbcType=VARCHAR}, #{dianh,jdbcType=VARCHAR}, #{xingb,jdbcType=INTEGER}, 
+      #{chusrq,jdbcType=DATE}, #{zhanghzt,jdbcType=INTEGER}, #{youx,jdbcType=VARCHAR}, 
+      #{yulzd1,jdbcType=VARCHAR}, #{yulzd2,jdbcType=VARCHAR}, #{yulzd3,jdbcType=VARCHAR}, 
+      #{yulzd4,jdbcType=VARCHAR}, #{yulzd5,jdbcType=VARCHAR}, #{updateDate,jdbcType=DATE}, 
+      #{updateUser,jdbcType=VARCHAR}, #{creatDate,jdbcType=DATE}, #{creatUser,jdbcType=VARCHAR}, 
+      #{beiz,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrkj.ygl.entity.login.Sys_user_info" >
+    insert into sys_user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="nianl != null" >
+        nianl,
+      </if>
+      <if test="shenfzh != null" >
+        shenfzh,
+      </if>
+      <if test="zhensxm != null" >
+        zhensxm,
+      </if>
+      <if test="zhuz != null" >
+        zhuz,
+      </if>
+      <if test="tec != null" >
+        tec,
+      </if>
+      <if test="dianh != null" >
+        dianh,
+      </if>
+      <if test="xingb != null" >
+        xingb,
+      </if>
+      <if test="chusrq != null" >
+        chusrq,
+      </if>
+      <if test="zhanghzt != null" >
+        zhanghzt,
+      </if>
+      <if test="youx != null" >
+        youx,
+      </if>
+      <if test="yulzd1 != null" >
+        yulzd1,
+      </if>
+      <if test="yulzd2 != null" >
+        yulzd2,
+      </if>
+      <if test="yulzd3 != null" >
+        yulzd3,
+      </if>
+      <if test="yulzd4 != null" >
+        yulzd4,
+      </if>
+      <if test="yulzd5 != null" >
+        yulzd5,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="creatDate != null" >
+        creat_date,
+      </if>
+      <if test="creatUser != null" >
+        creat_user,
+      </if>
+      <if test="beiz != null" >
+        beiz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=INTEGER},
+      </if>
+      <if test="nianl != null" >
+        #{nianl,jdbcType=INTEGER},
+      </if>
+      <if test="shenfzh != null" >
+        #{shenfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="zhensxm != null" >
+        #{zhensxm,jdbcType=VARCHAR},
+      </if>
+      <if test="zhuz != null" >
+        #{zhuz,jdbcType=VARCHAR},
+      </if>
+      <if test="tec != null" >
+        #{tec,jdbcType=VARCHAR},
+      </if>
+      <if test="dianh != null" >
+        #{dianh,jdbcType=VARCHAR},
+      </if>
+      <if test="xingb != null" >
+        #{xingb,jdbcType=INTEGER},
+      </if>
+      <if test="chusrq != null" >
+        #{chusrq,jdbcType=DATE},
+      </if>
+      <if test="zhanghzt != null" >
+        #{zhanghzt,jdbcType=INTEGER},
+      </if>
+      <if test="youx != null" >
+        #{youx,jdbcType=VARCHAR},
+      </if>
+      <if test="yulzd1 != null" >
+        #{yulzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="yulzd2 != null" >
+        #{yulzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="yulzd3 != null" >
+        #{yulzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="yulzd4 != null" >
+        #{yulzd4,jdbcType=VARCHAR},
+      </if>
+      <if test="yulzd5 != null" >
+        #{yulzd5,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="creatDate != null" >
+        #{creatDate,jdbcType=DATE},
+      </if>
+      <if test="creatUser != null" >
+        #{creatUser,jdbcType=VARCHAR},
+      </if>
+      <if test="beiz != null" >
+        #{beiz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrkj.ygl.entity.login.Sys_user_info" >
+    update sys_user_info
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=INTEGER},
+      </if>
+      <if test="nianl != null" >
+        nianl = #{nianl,jdbcType=INTEGER},
+      </if>
+      <if test="shenfzh != null" >
+        shenfzh = #{shenfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="zhensxm != null" >
+        zhensxm = #{zhensxm,jdbcType=VARCHAR},
+      </if>
+      <if test="zhuz != null" >
+        zhuz = #{zhuz,jdbcType=VARCHAR},
+      </if>
+      <if test="tec != null" >
+        tec = #{tec,jdbcType=VARCHAR},
+      </if>
+      <if test="dianh != null" >
+        dianh = #{dianh,jdbcType=VARCHAR},
+      </if>
+      <if test="xingb != null" >
+        xingb = #{xingb,jdbcType=INTEGER},
+      </if>
+      <if test="chusrq != null" >
+        chusrq = #{chusrq,jdbcType=DATE},
+      </if>
+      <if test="zhanghzt != null" >
+        zhanghzt = #{zhanghzt,jdbcType=INTEGER},
+      </if>
+      <if test="youx != null" >
+        youx = #{youx,jdbcType=VARCHAR},
+      </if>
+      <if test="yulzd1 != null" >
+        yulzd1 = #{yulzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="yulzd2 != null" >
+        yulzd2 = #{yulzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="yulzd3 != null" >
+        yulzd3 = #{yulzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="yulzd4 != null" >
+        yulzd4 = #{yulzd4,jdbcType=VARCHAR},
+      </if>
+      <if test="yulzd5 != null" >
+        yulzd5 = #{yulzd5,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="creatDate != null" >
+        creat_date = #{creatDate,jdbcType=DATE},
+      </if>
+      <if test="creatUser != null" >
+        creat_user = #{creatUser,jdbcType=VARCHAR},
+      </if>
+      <if test="beiz != null" >
+        beiz = #{beiz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrkj.ygl.entity.login.Sys_user_info" >
+    update sys_user_info
+    set username = #{username,jdbcType=VARCHAR},
+      role = #{role,jdbcType=INTEGER},
+      nianl = #{nianl,jdbcType=INTEGER},
+      shenfzh = #{shenfzh,jdbcType=VARCHAR},
+      zhensxm = #{zhensxm,jdbcType=VARCHAR},
+      zhuz = #{zhuz,jdbcType=VARCHAR},
+      tec = #{tec,jdbcType=VARCHAR},
+      dianh = #{dianh,jdbcType=VARCHAR},
+      xingb = #{xingb,jdbcType=INTEGER},
+      chusrq = #{chusrq,jdbcType=DATE},
+      zhanghzt = #{zhanghzt,jdbcType=INTEGER},
+      youx = #{youx,jdbcType=VARCHAR},
+      yulzd1 = #{yulzd1,jdbcType=VARCHAR},
+      yulzd2 = #{yulzd2,jdbcType=VARCHAR},
+      yulzd3 = #{yulzd3,jdbcType=VARCHAR},
+      yulzd4 = #{yulzd4,jdbcType=VARCHAR},
+      yulzd5 = #{yulzd5,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=DATE},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      creat_date = #{creatDate,jdbcType=DATE},
+      creat_user = #{creatUser,jdbcType=VARCHAR},
+      beiz = #{beiz,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

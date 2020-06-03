@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mrkj.ygl.dao.forum.forumSecondMapper" >
+  <resultMap id="BaseResultMap" type="com.mrkj.ygl.entity.forum.forumSecond" >
+    <id column="sec_id" property="secId" jdbcType="VARCHAR" />
+    <result column="main_id" property="mainId" jdbcType="VARCHAR" />
+    <result column="sec_sequence" property="secSequence" jdbcType="INTEGER" />
+    <result column="sec_creatuser" property="secCreatuser" jdbcType="VARCHAR" />
+    <result column="sec_creatime" property="secCreatime" jdbcType="TIMESTAMP" />
+    <result column="sec_nickname" property="secNickname" jdbcType="VARCHAR" />
+    <result column="sec_resequence" property="secResequence" jdbcType="INTEGER" />
+    <result column="sec_delete" property="secDelete" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mrkj.ygl.entity.forum.forumSecond" extends="BaseResultMap" >
+    <result column="sec_content" property="secContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sec_id, main_id, sec_sequence, sec_creatuser, sec_creatime, sec_nickname, sec_resequence, 
+    sec_delete
+  </sql>
+  <sql id="Blob_Column_List" >
+    sec_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from forum_second
+    where sec_id = #{secId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from forum_second
+    where sec_id = #{secId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.mrkj.ygl.entity.forum.forumSecond" >
+    insert into forum_second (sec_id, main_id, sec_sequence, 
+      sec_creatuser, sec_creatime, sec_nickname, 
+      sec_resequence, sec_delete, sec_content
+      )
+    values (#{secId,jdbcType=VARCHAR}, #{mainId,jdbcType=VARCHAR}, #{secSequence,jdbcType=INTEGER}, 
+      #{secCreatuser,jdbcType=VARCHAR}, #{secCreatime,jdbcType=TIMESTAMP}, #{secNickname,jdbcType=VARCHAR}, 
+      #{secResequence,jdbcType=INTEGER}, #{secDelete,jdbcType=CHAR}, #{secContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrkj.ygl.entity.forum.forumSecond" >
+    insert into forum_second
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="secId != null" >
+        sec_id,
+      </if>
+      <if test="mainId != null" >
+        main_id,
+      </if>
+      <if test="secSequence != null" >
+        sec_sequence,
+      </if>
+      <if test="secCreatuser != null" >
+        sec_creatuser,
+      </if>
+      <if test="secCreatime != null" >
+        sec_creatime,
+      </if>
+      <if test="secNickname != null" >
+        sec_nickname,
+      </if>
+      <if test="secResequence != null" >
+        sec_resequence,
+      </if>
+      <if test="secDelete != null" >
+        sec_delete,
+      </if>
+      <if test="secContent != null" >
+        sec_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="secId != null" >
+        #{secId,jdbcType=VARCHAR},
+      </if>
+      <if test="mainId != null" >
+        #{mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="secSequence != null" >
+        #{secSequence,jdbcType=INTEGER},
+      </if>
+      <if test="secCreatuser != null" >
+        #{secCreatuser,jdbcType=VARCHAR},
+      </if>
+      <if test="secCreatime != null" >
+        #{secCreatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="secNickname != null" >
+        #{secNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="secResequence != null" >
+        #{secResequence,jdbcType=INTEGER},
+      </if>
+      <if test="secDelete != null" >
+        #{secDelete,jdbcType=CHAR},
+      </if>
+      <if test="secContent != null" >
+        #{secContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrkj.ygl.entity.forum.forumSecond" >
+    update forum_second
+    <set >
+      <if test="mainId != null" >
+        main_id = #{mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="secSequence != null" >
+        sec_sequence = #{secSequence,jdbcType=INTEGER},
+      </if>
+      <if test="secCreatuser != null" >
+        sec_creatuser = #{secCreatuser,jdbcType=VARCHAR},
+      </if>
+      <if test="secCreatime != null" >
+        sec_creatime = #{secCreatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="secNickname != null" >
+        sec_nickname = #{secNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="secResequence != null" >
+        sec_resequence = #{secResequence,jdbcType=INTEGER},
+      </if>
+      <if test="secDelete != null" >
+        sec_delete = #{secDelete,jdbcType=CHAR},
+      </if>
+      <if test="secContent != null" >
+        sec_content = #{secContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where sec_id = #{secId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mrkj.ygl.entity.forum.forumSecond" >
+    update forum_second
+    set main_id = #{mainId,jdbcType=VARCHAR},
+      sec_sequence = #{secSequence,jdbcType=INTEGER},
+      sec_creatuser = #{secCreatuser,jdbcType=VARCHAR},
+      sec_creatime = #{secCreatime,jdbcType=TIMESTAMP},
+      sec_nickname = #{secNickname,jdbcType=VARCHAR},
+      sec_resequence = #{secResequence,jdbcType=INTEGER},
+      sec_delete = #{secDelete,jdbcType=CHAR},
+      sec_content = #{secContent,jdbcType=LONGVARCHAR}
+    where sec_id = #{secId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrkj.ygl.entity.forum.forumSecond" >
+    update forum_second
+    set main_id = #{mainId,jdbcType=VARCHAR},
+      sec_sequence = #{secSequence,jdbcType=INTEGER},
+      sec_creatuser = #{secCreatuser,jdbcType=VARCHAR},
+      sec_creatime = #{secCreatime,jdbcType=TIMESTAMP},
+      sec_nickname = #{secNickname,jdbcType=VARCHAR},
+      sec_resequence = #{secResequence,jdbcType=INTEGER},
+      sec_delete = #{secDelete,jdbcType=CHAR}
+    where sec_id = #{secId,jdbcType=VARCHAR}
+  </update>
+</mapper>

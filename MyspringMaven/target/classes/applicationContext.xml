@@ -30,6 +30,11 @@
         <property name="advice" ref="HijackAroundMethodBean"/>
     </bean>
 
+<!--    <bean id="customerAOPCutAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">-->
+<!--        <property name="mappedName" value="printName"/>-->
+<!--        <property name="advice" ref="HijackAroundMethodBean"/>-->
+<!--    </bean>-->
+
     <bean id="customerAOPProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="target" ref="customerAOP"/>
         <property name="interceptorNames">
@@ -38,18 +43,20 @@
             </list>
         </property>
     </bean>
-
-
-
-
+    <bean id="customerAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="patterns">
+            <list>
+                <value>.*URL.*</value>
+            </list>
+        </property>
+        <property name="advice" ref="HijackAroundMethodBean" />
+    </bean>
     <!--    <bean id="'item" class="com.zuo.springel.Item">-->
     <!--        <property name="name" value="Zuo"></property>-->
     <!--        <property name="qty" value="10"></property>-->
     <!--    </bean>-->
-
     <!--    <bean id="customer2Bean" class="com.zuo.springel.Customer2">-->
     <!--        <property name="item" value="#{'item}" />-->
     <!--        <property name="itemName" value="#{'item.name}" />-->
     <!--    </bean>-->
-
 </beans>

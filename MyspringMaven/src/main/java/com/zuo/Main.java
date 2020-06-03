@@ -2,14 +2,21 @@ package com.zuo;
 
 import com.zuo.initspringbean.CustomerService;
 import com.zuo.spingaop.customerAOP;
+import com.zuo.util.Chinese;
+import com.zuo.util.HeNanPerson;
+import com.zuo.util.Person;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Main {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        CustomerService customerService = (CustomerService) context.getBean("customerService");
+//        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+//        CustomerService customerService = (CustomerService) context.getBean("customerService");
 //        System.out.println(customerService);
 //
 //        Customer1 customer1 = (Customer1) context.getBean("customer1");
@@ -30,16 +37,30 @@ public class Main {
 //        String msg1 = exp.getValue(itemContext, String.class);
 
 //        customerAOP custP = (customerAOP) context.getBean("customerAOP");
-        customerAOP cust = (customerAOP) context.getBean("customerAOPProxy");
-        System.out.println("*************************");
-        cust.printName();
-        System.out.println("*************************");
-        cust.printURL();
-        System.out.println("*************************");
-        try {
-            cust.printThrowException();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        customerAOP cust = (customerAOP) context.getBean("customerAOPProxy");
+//        System.out.println("*************************");
+//        cust.printName();
+//        System.out.println("*************************");
+//        cust.printURL();
+//        System.out.println("*************************");
+//        try {
+//            cust.printThrowException();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+        int length = 10;
+        System.out.println(length >> 1);
+        Set<HeNanPerson> set = new TreeSet<HeNanPerson>();
+        HeNanPerson heNanPerson = new HeNanPerson("Nan yang");
+        HeNanPerson heNanPerson2 = new HeNanPerson("Xin yang");
+        HeNanPerson heNanPerson3 = new HeNanPerson("An yang");
+        set.add(heNanPerson);
+        set.add(heNanPerson2);
+        ArrayList<Chinese> arrayList = new ArrayList<Chinese>(set);
+        arrayList.get(0);
+        arrayList.add(1,heNanPerson3);
+        System.out.println(arrayList);
+
     }
 }

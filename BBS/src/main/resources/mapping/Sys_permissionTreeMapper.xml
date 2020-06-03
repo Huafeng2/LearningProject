@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mrkj.ygl.dao.role.Sys_permissionTreeMapper" >
+  <resultMap id="BaseResultMap" type="com.mrkj.ygl.entity.role.Sys_permissionTree" >
+    <id column="permission_id" property="id" jdbcType="INTEGER" />
+    <result column="permission_name" property="type" jdbcType="VARCHAR" />
+    <result column="permission_menu_name" property="name" jdbcType="VARCHAR" />
+    <result column="permission_menu_pid" property="pId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    permission_id, permission_name, permission_menu_name, permission_menu_pid
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_permission
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_permission
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_permission
+    where permission_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mrkj.ygl.entity.role.Sys_permission" >
+    insert into sys_permission (permission_id, permission_name, permission_menu_name, 
+      permission_menu_pid)
+    values (#{permissionId,jdbcType=INTEGER}, #{permissionName,jdbcType=VARCHAR}, #{permissionMenuName,jdbcType=VARCHAR}, 
+      #{permissionMenuPid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mrkj.ygl.entity.role.Sys_permission" >
+    insert into sys_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="permissionId != null" >
+        permission_id,
+      </if>
+      <if test="permissionName != null" >
+        permission_name,
+      </if>
+      <if test="permissionMenuName != null" >
+        permission_menu_name,
+      </if>
+      <if test="permissionMenuPid != null" >
+        permission_menu_pid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="permissionId != null" >
+        #{permissionId,jdbcType=INTEGER},
+      </if>
+      <if test="permissionName != null" >
+        #{permissionName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionMenuName != null" >
+        #{permissionMenuName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionMenuPid != null" >
+        #{permissionMenuPid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mrkj.ygl.entity.role.Sys_permission" >
+    update sys_permission
+    <set >
+      <if test="permissionName != null" >
+        permission_name = #{permissionName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionMenuName != null" >
+        permission_menu_name = #{permissionMenuName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionMenuPid != null" >
+        permission_menu_pid = #{permissionMenuPid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mrkj.ygl.entity.role.Sys_permission" >
+    update sys_permission
+    set permission_name = #{permissionName,jdbcType=VARCHAR},
+      permission_menu_name = #{permissionMenuName,jdbcType=VARCHAR},
+      permission_menu_pid = #{permissionMenuPid,jdbcType=INTEGER}
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </update>
+</mapper>
